@@ -1,0 +1,23 @@
+<h1>{{ blog.title }}</h1>
+
+<p>{{ blog.content }}</p>
+
+<a href="{% url 'blog_update' blog.pk %}">Edit</a>
+<a href="{% url 'blog_delete' blog.pk %}">Delete</a>
+
+<hr>
+
+<h2>Sub-blogs</h2>
+
+<ul>
+  {% for subblog in blog.subblog_set.all %}
+    <li>
+      <h3>{{ subblog.title }}</h3>
+      <p>{{ subblog.content }}</p>
+    </li>
+  {% empty %}
+    <li>No sub-blogs found.</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'subblog_create' blog.pk %}">Add a sub-blog</a>
